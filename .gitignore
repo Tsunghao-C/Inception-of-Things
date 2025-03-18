@@ -1,5 +1,8 @@
 *.gem
 *.rbc
+.vagrant
+.DS_Store
+node-token
 /.config
 /coverage/
 /InstalledFiles
