@@ -1,75 +1,69 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1
-  labels:
-    app: app1
+  name: app-one-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app1
+      app: app-one
   template:
     metadata:
       labels:
-        app: app1
+        app: app-one
     spec:
       containers:
-      - name: app1
-        image: paulbouwer/hello-kubernetes:1.10.1
-        env:
-        - name: MESSAGE
-          value: This is app 1!
-        ports:
-        - containerPort: 8080
+        - name: app-one
+          image: paulbouwer/hello-kubernetes:1.10.1
+          env:
+            - name: MESSAGE
+              value: This is app 1!
+          ports:
+            - containerPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app2
-  labels:
-    app: app2
+  name: app-two-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: app2
+      app: app-two
   template:
     metadata:
       labels:
-        app: app2
+        app: app-two
     spec:
       containers:
-      - name: app2
-        image: paulbouwer/hello-kubernetes:1.10.1
-        env:
-        - name: MESSAGE
-          value: This is app 2!
-        ports:
-        - containerPort: 8080
+        - name: app-two
+          image: paulbouwer/hello-kubernetes:1.10.1
+          env:
+            - name: MESSAGE
+              value: This is app 2!
+          ports:
+            - containerPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app3
-  labels:
-    name: app3
+  name: app-three-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app3
+      app: app-three
   template:
     metadata:
       labels:
-        app: app3
+        app: app-three
     spec:
       containers:
-      - name: app3
-        image: paulbouwer/hello-kubernetes:1.10.1
-        env:
-        - name: MESSAGE
-          value: This is app 3!
-        ports:
-        - containerPort: 8080
+        - name: app-three
+          image: paulbouwer/hello-kubernetes:1.10.1
+          env:
+            - name: MESSAGE
+              value: This is app 3!
+          ports:
+            - containerPort: 80
 ---

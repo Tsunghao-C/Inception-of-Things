@@ -8,11 +8,11 @@ sleep 10
 # Deploy Applications
 echo "[Step 2] Deploying Applications"
 kubectl apply -f /vagrant/confs/services.yaml
-sleep 7
+sleep 5
 kubectl apply -f /vagrant/confs/deployments.yaml
-sleep 7
+sleep 5
 kubectl apply -f /vagrant/confs/ingress.yaml
-sleep 7
+sleep 5
 
 echo "[Step 3] Checking Deployments...."
 kubectl get deployments
