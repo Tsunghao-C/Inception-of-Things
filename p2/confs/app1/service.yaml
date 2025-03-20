@@ -4,8 +4,8 @@ metadata:
   name: app-one-service
 spec:
   selector:
-    app: app-one
+    app: app-one  # This service will automatically find pods with the label "app: app-one"
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 80  # The service will be exposed on port 80 "INSIDE" the cluster
+      targetPort: 80  # The service will "ROUTE TRAFFIC" to containers running on port 80

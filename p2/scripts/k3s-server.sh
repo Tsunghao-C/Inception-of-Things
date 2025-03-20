@@ -43,7 +43,7 @@ echo "[Ingress] Deploying"
 kubectl apply -f /vagrant/ingress.yaml
 echo "[Ingress] Done"
 
-sleep 5
+sleep 10
 
 # Check deployments
 echo "Checking Deployments...."

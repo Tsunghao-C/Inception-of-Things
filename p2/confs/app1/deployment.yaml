@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: app-one-deployment
 spec:
-  replicas: 1
+  replicas: 1  # Number of pods created
   selector:
     matchLabels:
       app: app-one
   template:
     metadata:
       labels:
-        app: app-one
+        app: app-one  # This label must match Service selector
     spec:
       containers:
         - name: app-one
