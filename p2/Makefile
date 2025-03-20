@@ -16,4 +16,4 @@ s:
 
 re: down up
 
-.PHONY: all up down clean re
+.PHONY: all up down clean re s
