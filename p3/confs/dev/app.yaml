@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: playground
+  namespace: argocd
+spec:
+  project: default
+  source:  # where you get the source code
+    repoURL: # github source repo to deploy
+    targetRevision: HEAD
+    path: manifests  # where you put deployment and service yaml files in the github repo showing how to deploy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
