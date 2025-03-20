@@ -4,7 +4,7 @@ sudo apt update -y
 
 # Set up env for K3s
 export K3S_KUBECONFIG_MODE="644"
-export INSTALL_K3S_EXEC="server --node-external-ip $1 --bind-address=$1"
+export INSTALL_K3S_EXEC="server --node-ip $1 --bind-address=$1"
 # Install K3s
 echo "[LOG] Installing K3s"
 sudo curl -sfL https://get.k3s.io | sh -
