@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: playground
+  name: will
   namespace: argocd
 spec:
   project: default
-  source:  # where you get the source code
-    repoURL: # github source repo to deploy
+  source:
+    repoURL: https://github.com/Tsunghao-C/IOT_test_deploy.git
     targetRevision: HEAD
-    path: manifests  # where you put deployment and service yaml files in the github repo showing how to deploy
+    path: manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
