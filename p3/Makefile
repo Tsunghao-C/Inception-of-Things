@@ -1,11 +1,14 @@
-all: up
+all: check up
+
+check:
+	@sudo ./scripts/pre-requisitions.sh
 
 up:
 	./scripts/setup-k3d-argocd.sh
 
 clean:
-	k3d cluster delete mycluster
+	k3d cluster delete $(USERNAME)
 
-re: down up
+re: clean up
 
-.PHONY: all up down clean re
+.PHONY: all check up clean re
