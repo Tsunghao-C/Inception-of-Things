@@ -44,7 +44,7 @@ argocd repo add $GITHUB_REPO --ssh-private-key-path $GITHUB_SSH_KEY_PATH
 
 # Apply ArgoCD application manifest
 echo "[LOG] Applying ArgoCD application..."
-kubectl apply -f "../confs/app.yaml"
+kubectl apply -f "./confs/app.yaml"
 
 # # Verify Deployment
 kubectl get pods -n $APP_NAMESPACE
