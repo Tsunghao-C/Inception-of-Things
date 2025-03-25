@@ -15,7 +15,7 @@ GITHUB_SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 
 # Create K3d cluster
 echo -e "${GREEN}[LOG] Creating K3d cluster...${NC}\n"
-k3d cluster create $USERNAME --servers 1 --agents 2 --api-port 6443 --port 80:80@loadbalancer --port 443:443@loadbalancer
+k3d cluster create $USERNAME --servers 1 --agents 2 --port 80:80@loadbalancer --port 443:443@loadbalancer
 
 # Create Namespaces
 echo -e "${GREEN}[LOG] Creating namespaces...${NC}\n"
@@ -59,13 +59,12 @@ kubectl get pods -n $APP_NAMESPACE
 echo -e "${GREEN}Setup complete!${NC} Access ArgoCD at: http://localhost:8080\n"
 echo -e "Login with: ${YELLOW}admin | $ARGO_PASSWORD${NC}\n"
 
+# # Add Gitlab Helm repo
+# helm repo add gitlab https://charts.gitlab.io/
+# helm repo update
 
-# Add Gitlab Helm repo
-helm repo add gitlab https://charts.gitlab.io/
-helm repo update
-
-# Install GitLab with Helm
-helm install gitlab gitlab/gitlab --namespace gitlab \
-  --set global.hosts.domain=local \
-  --set global.hosts.externalIP=127.0.0.1 \
-  --set certmanager-issuer.email=tsunghao.chen12@gmail.com
+# # Install GitLab with Helm
+# helm install gitlab gitlab/gitlab --namespace gitlab \
+#   --set global.hosts.domain=local \
+#   --set global.hosts.externalIP=127.0.0.1 \
+#   --set certmanager-issuer.email=tsunghao.chen12@gmail.com

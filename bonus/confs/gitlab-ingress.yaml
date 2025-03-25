@@ -4,8 +4,9 @@ metadata:
   name: gitlab-ingress
   namespace: gitlab
   annotations:
-    kubernetes.io/ingress.class: "traefik"
+    kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik
   rules:
     - host: gitlab.local
       http:
@@ -16,4 +17,4 @@ spec:
               service:
                 name: gitlab-webservice-default
                 port:
-                  number: 80
+                  number: 8181
