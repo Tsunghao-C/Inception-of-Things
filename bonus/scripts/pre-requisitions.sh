@@ -57,3 +57,6 @@ curl -LO \"https://dl.k8s.io/release/\$(curl -s https://storage.googleapis.com/k
 
 # install k3d
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+# install Helm
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
