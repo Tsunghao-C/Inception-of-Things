@@ -10,7 +10,7 @@ set -e
 ARGOCD_NAMESPACE="argocd"
 APP_NAMESPACE="dev"
 GITLAB_NAMESPACE="gitlab"
-GITHUB_REPO="git@github.com:Tsunghao-C/IOT_test_deploy.git"
+GITHUB_REPO="git@github.com:Tsunghao-C/tsuchen-ception.git"
 GITHUB_SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 
 # Create K3d cluster
