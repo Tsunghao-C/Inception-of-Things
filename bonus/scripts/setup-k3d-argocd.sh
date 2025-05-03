@@ -59,12 +59,16 @@ kubectl get pods -n $APP_NAMESPACE
 echo -e "${GREEN}Setup complete!${NC} Access ArgoCD at: http://localhost:8080\n"
 echo -e "Login with: ${YELLOW}admin | $ARGO_PASSWORD${NC}\n"
 
-# # Add Gitlab Helm repo
+# # # Add Gitlab Helm repo
 # helm repo add gitlab https://charts.gitlab.io/
 # helm repo update
 
 # # Install GitLab with Helm
 # helm install gitlab gitlab/gitlab --namespace gitlab \
+#   --timeout 600s \
 #   --set global.hosts.domain=local \
 #   --set global.hosts.externalIP=127.0.0.1 \
 #   --set certmanager-issuer.email=tsunghao.chen12@gmail.com
+
+# # Get password of gitlab
+# GITLAB_PASSWOD=$(kubectl get secret <name>-gitlab-initial-root-password -ojsonpath='{.data.password}' | base64 --decode ; echo)
