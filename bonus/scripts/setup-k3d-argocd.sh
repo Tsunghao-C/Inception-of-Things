@@ -7,6 +7,7 @@ NC='\033[0m'
 
 set -e
 
+# USERNAME="tsuchen"
 ARGOCD_NAMESPACE="argocd"
 APP_NAMESPACE="dev"
 GITLAB_NAMESPACE="gitlab"
@@ -15,7 +16,9 @@ GITHUB_SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 
 # Create K3d cluster
 echo -e "${GREEN}[LOG] Creating K3d cluster...${NC}\n"
-k3d cluster create $USERNAME --servers 1 --agents 2 --port 80:80@loadbalancer --port 443:443@loadbalancer
+k3d cluster create $USERNAME --servers 1 --agents 2
+
+# export KUBECONFIG="$(sudo k3d kubeconfig write "$USERNAME")"
 
 # Create Namespaces
 echo -e "${GREEN}[LOG] Creating namespaces...${NC}\n"

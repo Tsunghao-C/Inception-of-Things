@@ -10,15 +10,16 @@ spaces="   "
 
 # gitlab
 printf "${GREEN}[GITLAB]${NC} - Install and launch app...\n"
-# sudo kubectl apply -f ./confs/gitlab/namespace.yaml
-sudo kubectl apply -n gitlab -f ./confs/gitlab/volume.yaml > /dev/null
-sudo kubectl apply -n gitlab -f ./confs/gitlab/deployment.yaml > /dev/null
-sudo kubectl apply -n gitlab -f ./confs/gitlab/service.yaml > /dev/null
+# kubectl cluster-info
+# kubectl apply -f ./confs/gitlab/namespace.yaml
+kubectl apply -n gitlab -f ./confs/gitlab/volume.yaml > /dev/null
+kubectl apply -n gitlab -f ./confs/gitlab/deployment.yaml > /dev/null
+kubectl apply -n gitlab -f ./confs/gitlab/service.yaml > /dev/null
 
 # wait gitlab pods running
 printf "${GREEN}[GITLAB]${NC} - Waiting for all pods to be running...\n"
 while true; do
-	running_pods=$(sudo kubectl get pods -n gitlab --field-selector=status.phase=Running 2>/dev/null | grep -c "gitlab")
+	running_pods=$(kubectl get pods -n gitlab --field-selector=status.phase=Running 2>/dev/null | grep -c "gitlab")
 	if [[ "$running_pods" -eq "1" ]]; then
 		printf "\r${YELLOW}[GITLAB]${NC} - Waiting...	(1/1)\n"
 		printf "${GREEN}[GITLAB]${NC} - All pods are running.\n"
@@ -32,7 +33,7 @@ while true; do
 done
 
 # network settings
-sudo kubectl apply -n gitlab -f ./confs/gitlab/ingress.yaml
+kubectl apply -n gitlab -f ./confs/gitlab/ingress.yaml
 
 printf "${GREEN}[GITLAB]${NC} - Waiting for GitLab service to be ready.\n"
 response="000"
@@ -49,7 +50,7 @@ while [[ "$response" != "302" ]]; do
   fi
 done
 
-password=$(sudo kubectl exec -n gitlab $(sudo kubectl get pods -n gitlab -l app=gitlab -o jsonpath='{.items[0].metadata.name}') -- cat /etc/gitlab/initial_root_password | awk '/Password:/ {print $2}')
+password=$(kubectl exec -n gitlab $(kubectl get pods -n gitlab -l app=gitlab -o jsonpath='{.items[0].metadata.name}') -- cat /etc/gitlab/initial_root_password | awk '/Password:/ {print $2}')
 echo "$password" > .gitlab_password
 
 # print informations
