@@ -57,4 +57,4 @@ kubectl get pods -n $APP_NAMESPACE
 echo -e "${GREEN}Setup complete!${NC} Access ArgoCD at: http://localhost:8080\n"
 echo -e "Login with: ${YELLOW}admin | $ARGO_PASSWORD${NC}\n"
 
-kubectl port-forward service/tsuchen-app-service -n "$APP_NAMESPACE" 8080:80 > /dev/null 2>&1 &
+kubectl port-forward service/tsuchen-app-service -n "$APP_NAMESPACE" 8888:80 > /dev/null 2>&1 &
