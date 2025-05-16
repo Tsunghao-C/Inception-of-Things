@@ -1,20 +1,24 @@
-all: check up
-
-check:
-	@sudo ./scripts/pre-requisitions.sh
+all: up
 
 up:
-	./scripts/setup-k3d-argocd.sh
+	@if ! k3d cluster list | grep -q $(USER); then \
+		echo "Error: k3d cluster '$(USER)' is not running or does not exist"; \
+		exit 1; \
+	fi
+	HOST_IP=$$(hostname -I | cut -d " " -f1) vagrant up
+	./scripts/bonus.sh
+
+down:
+	vagrant destroy -f
 
 clean:
-	k3d cluster delete $(USERNAME)
-	docker volume prune -f
-	docker network prune -f
-	docker image prune -a -f
+	vagrant box prune
+	rm -rf ~/.vagrant.d/tmp/*
+	rm -rf ~/VirtualBox\ VMs/
 
-fclean: clean
-	@sudo ./scripts/uninstall_prereqs.sh
+s:
+	vagrant ssh GitlabS
 
-re: clean up
+re: down up
 
-.PHONY: all check up clean fclean re
+.PHONY: all up down clean re s
