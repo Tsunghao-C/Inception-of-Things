@@ -14,7 +14,7 @@ GITHUB_SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 
 # Create K3d cluster
 echo -e "${GREEN}[LOG] Creating K3d cluster...${NC}\n"
-k3d cluster create $USERNAME --servers 1 --agents 2
+k3d cluster create $USERNAME
 
 # Create Namespaces
 echo -e "${GREEN}[LOG] Creating namespaces...${NC}\n"
@@ -56,3 +56,5 @@ kubectl get pods -n $APP_NAMESPACE
 
 echo -e "${GREEN}Setup complete!${NC} Access ArgoCD at: http://localhost:8080\n"
 echo -e "Login with: ${YELLOW}admin | $ARGO_PASSWORD${NC}\n"
+
+kubectl port-forward service/tsuchen-app-service -n "$APP_NAMESPACE" 8080:80 > /dev/null 2>&1 &
